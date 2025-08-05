@@ -1,4 +1,6 @@
+const { rejects } = require('assert');
 const fs = require('fs');
+const { resolve } = require('path');
 
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -16,13 +18,32 @@ if (!fs.existsSync(dataPath)) {
     fs.writeFileSync(dataPath, '[]', 'utf-8');
 }
 
-rl.question("Masukkan nama: ", (nama) => {
-    rl.question("Masukkan umur: ", (umur) => {
-        const data = { nama, umur }
-        const file = fs.readFileSync('data/contacts.json', 'utf-8')
-        const contacts = JSON.parse(file)
-        contacts.push(data)
-        fs.writeFileSync('data/contacts.json', JSON.stringify(contacts))
-        rl.close();
-    });
-});
+const pertanyaan1 = () => {
+    return new Promise((resolve, rejects) => {
+        rl.question("Masukkan nama: ", (nama) => {
+            resolve(nama)
+        })
+    })
+}
+
+const pertanyaan2 = () => {
+    return new Promise((resolve, rejects) => {
+        rl.question('Masukkan Nomor HP: ', (noHP) => {
+            resolve(noHP)
+        })
+    })
+}
+
+const main = async () => {
+    const nama = await pertanyaan1()
+    const noHP = await pertanyaan2();
+
+    const data = {nama, noHP};
+    const file = fs.readFileSync("data/contacts.json", "utf-8");
+    const contacts = JSON.parse(file);
+    contacts.push(data);
+    fs.writeFileSync("data/contacts.json", JSON.stringify(contacts, null, 2));
+    rl.close();
+}
+
+main()

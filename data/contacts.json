@@ -1,1 +1,10 @@
-[{"nama":"Fadhil","umur":"23"}]
+[
+  {
+    "nama": "Fadhil",
+    "noHP": "081212312312"
+  },
+  {
+    "nama": "Irwan",
+    "noHP": "081390001234"
+  }
+]
