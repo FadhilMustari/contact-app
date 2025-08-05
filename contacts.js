@@ -26,8 +26,8 @@ const tulisPertanyaan = (pertanyaan) => {
     })
 }
 
-const simpanContact = (nama, noHP) => {
-	const data = {nama, noHP};
+const simpanContact = (nama, noHP, email) => {
+	const data = { nama, noHP, email };
 	const file = fs.readFileSync("data/contacts.json", "utf-8");
 	const contacts = JSON.parse(file);
 	contacts.push(data);
