@@ -12,7 +12,7 @@ yargs.command({
 		},
 		noHP: {
 			describe: 'Nomor HP',
-			demandOption: false,
+			demandOption: true,
 			type: 'string',
 		},
 		email: {
